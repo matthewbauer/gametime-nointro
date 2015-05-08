@@ -1,6 +1,6 @@
 {
 	"name": "gametime-nointro",
-	"version": "0.3.2",
+	"version": "0.5.0",
 	"description": "Used to fetch nointro roms.",
 	"main": "nointro.js",
 	"author": "Matthew Bauer <mjbauer95@gmail.com>",
