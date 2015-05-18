@@ -4,7 +4,7 @@ request = require 'request'
 unzip = require 'unzip'
 streamBuffers = require 'stream-buffers'
 
-module.exports.getROM = (rom, cb) ->
+module.exports.getROM = (rom) ->
   date = '2015-03-03'
   romURL = url.format
     protocol: 'https'
@@ -15,13 +15,20 @@ module.exports.getROM = (rom, cb) ->
       "#{rom.nointro_console}.zip"
       "#{rom.nointro_console}%2F#{rom.nointro_name}.zip"
     ].join '/'
-  request(romURL).pipe(unzip.Parse()).on 'entry', (entry) ->
-    if entry.type is 'File'
-      writableStream = new streamBuffers.WritableStreamBuffer()
-      entry.pipe(writableStream).on 'close', ->
-        cb writableStream.getContents(), entry.uncompressedSize
-    else
-      entry.autodrain()
+  new Promise (resolve, reject) ->
+    request romURL
+    .pipe unzip.Parse()
+    .on 'entry', (entry) ->
+      if entry.type is 'File'
+        writableStream = new streamBuffers.WritableStreamBuffer()
+        entry
+        .pipe writableStream
+        .on 'close', ->
+          resolve writableStream.getContents(), entry.uncompressedSize
+      else
+        entry.autodrain()
+    .on 'close', reject
 
 module.exports.hasROM = (rom, cb) ->
-  cb true
+  new Promise (resolve, reject) ->
+    resolve(true)
