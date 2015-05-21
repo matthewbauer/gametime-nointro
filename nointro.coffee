@@ -24,7 +24,7 @@ module.exports.getROM = (rom) ->
         entry
         .pipe writableStream
         .on 'close', ->
-          resolve writableStream.getContents(), entry.uncompressedSize
+          resolve writableStream.getContents()
       else
         entry.autodrain()
     .on 'close', reject
