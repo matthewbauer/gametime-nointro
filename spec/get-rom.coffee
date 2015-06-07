@@ -19,7 +19,8 @@ for rom in roms
           body.should.exist
           done()
       it "should be able to find rom in zip", (done) ->
-        nointro.getROM(rom).then (buffer) ->
+        nointro.getROM rom
+        .then (buffer) ->
           should.exist buffer
           done()
         , done

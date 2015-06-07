@@ -16,7 +16,7 @@ getURL = (rom, date) ->
 getROM = (rom) ->
   new Promise (resolve, reject) ->
     request
-      url: getURL(rom)
+      url: getURL rom
       encoding: null
     , (err, resp, body) ->
       if err or resp.statusCode != 200
