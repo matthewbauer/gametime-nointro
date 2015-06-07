@@ -8,7 +8,7 @@ module.exports = (grunt) ->
         options:
           reporter: 'spec',
           require: 'coffee-script/register'
-        src: ['test.coffee']
+        src: ['spec/*.coffee']
     coffee:
       compile:
         files: [

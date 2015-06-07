@@ -1,6 +1,6 @@
 {
   "name": "gametime-nointro",
-  "version": "0.5.1",
+  "version": "0.5.2",
   "description": "Used to fetch nointro roms.",
   "main": "nointro.js",
   "author": "Matthew Bauer <mjbauer95@gmail.com>",
@@ -13,9 +13,8 @@
     "test": "grunt test"
   },
   "dependencies": {
-    "request": "^2.54.0",
-    "stream-buffers": "^2.1.0",
-    "unzip": "^0.1.11"
+    "jszip": "^2.5.0",
+    "request": "^2.54.0"
   },
   "devDependencies": {
     "coffee-script": "^1.9.2",

@@ -1,32 +1,36 @@
 url = require 'url'
-fs = require 'fs'
 path = require 'path'
 request = require 'request'
-unzip = require 'unzip'
-streamBuffers = require 'stream-buffers'
+JSZip = require 'jszip'
 
-date = '2015-03-03'
-module.exports.getROM = (rom) ->
+getURL = (rom, date) ->
+  date ?= '2015-03-03'
+  url.format
+    protocol: 'https'
+    hostname: 'archive.org'
+    pathname: path.join 'download',
+      "No-Intro-Collection_#{date}",
+      "#{rom.nointro_console}.zip",
+      "#{rom.nointro_console}%2F#{rom.nointro_name}.zip"
+
+getROM = (rom) ->
   new Promise (resolve, reject) ->
-    request url.format
-      protocol: 'https'
-      hostname: 'archive.org'
-      pathname: path.join 'download',
-        "No-Intro-Collection_#{date}",
-        "#{rom.nointro_console}.zip",
-        "#{rom.nointro_console}%2F#{rom.nointro_name}.zip"
-    .pipe unzip.Parse()
-    .on 'entry', (entry) ->
-      if entry.type is 'File'
-        writableStream = new streamBuffers.WritableStreamBuffer()
-        entry
-        .pipe writableStream
-        .on 'close', ->
-          resolve writableStream.getContents()
-      else
-        entry.autodrain()
-    .on 'close', reject
+    request
+      url: getURL(rom)
+      encoding: null
+    , (err, resp, body) ->
+      if err or resp.statusCode != 200
+        reject err
+        return
+      zip = new JSZip body
+      file = zip.file rom.nointro_name
+      if file is null
+        reject()
+        return
+      resolve file.asNodeBuffer() # use arraybuffer?
 
-module.exports.hasROM = (rom, cb) ->
+hasROM = (rom, cb) -> #TODO: intelligent hasROM
   new Promise (resolve, reject) ->
     resolve true
+
+module.exports = {getURL, getROM, hasROM}
