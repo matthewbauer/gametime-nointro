@@ -5,6 +5,7 @@ fs = require 'fs'
 
 roms = [
   nointro_name: 'Super Mario World (USA)'
+  file_name: 'Super Mario World (USA).sfc'
   nointro_console: 'Nintendo - Super Nintendo Entertainment System'
 ]
 
@@ -23,4 +24,3 @@ for rom in roms
         .then (buffer) ->
           should.exist buffer
           done()
-        , done

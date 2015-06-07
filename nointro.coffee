@@ -23,7 +23,7 @@ getROM = (rom) ->
         reject err
         return
       zip = new JSZip body
-      file = zip.file rom.nointro_name
+      file = zip.file rom.file_name
       if file is null
         reject()
         return

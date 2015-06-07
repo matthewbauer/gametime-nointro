@@ -6,7 +6,6 @@ module.exports = (grunt) ->
     mochaTest:
       test:
         options:
-          reporter: 'spec',
           require: [
             'coffee-script/register'
             'coffee-coverage/register-istanbul'
