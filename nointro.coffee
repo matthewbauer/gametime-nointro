@@ -27,7 +27,7 @@ getROM = (rom) ->
       if file is null
         reject()
         return
-      resolve file.asNodeBuffer() # use arraybuffer?
+      resolve file.asArrayBuffer()
 
 hasROM = (rom, cb) -> #TODO: intelligent hasROM
   new Promise (resolve, reject) ->
