@@ -10,7 +10,7 @@ module.exports = (grunt) ->
             'coffee-script/register'
             'coffee-coverage/register-istanbul'
           ]
-        src: ['spec/*.coffee']
+        src: ['test.coffee']
     coffee:
       compile:
         files: [

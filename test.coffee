@@ -1,5 +1,5 @@
 should = require 'should'
-nointro = require '../nointro'
+nointro = require './nointro'
 request = require 'request'
 fs = require 'fs'
 
