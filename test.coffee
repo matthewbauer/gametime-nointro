@@ -20,7 +20,8 @@ for rom in roms
           body.should.exist
           done()
       it "should be able to find rom in zip", (done) ->
+        @timeout 10000
         nointro.getROM rom
         .then (buffer) ->
           should.exist buffer
-          done()
+        .then done, done

@@ -1,35 +1,31 @@
 url = require 'url'
 path = require 'path'
-request = require 'request'
+fetch = require 'isomorphic-fetch'
 JSZip = require 'jszip'
 
 getURL = (rom, date) ->
   date ?= '2015-03-03'
+  collection = "No-Intro-Collection_#{date}"
   url.format
-    protocol: 'https'
-    hostname: 'archive.org'
-    pathname: path.join 'download',
-      "No-Intro-Collection_#{date}",
-      "#{rom.nointro_console}.zip",
-      "#{rom.nointro_console}%2F#{rom.nointro_name}.zip"
+    protocol: 'http'
+    hostname: 'ia800500.us.archive.org'
+    pathname: "zipview.php"
+    query:
+      zip: "/33/items/#{collection}/#{rom.nointro_console}.zip"
+      file: "#{rom.nointro_console}/#{rom.nointro_name}.zip"
 
 getROM = (rom) ->
-  new Promise (resolve, reject) ->
-    request
-      url: getURL rom
-      encoding: null
-    , (err, resp, body) ->
-      if err or resp.statusCode != 200
-        reject err
-        return
-      zip = new JSZip body
-      file = zip.file rom.file_name
-      if file is null
-        reject()
-        return
-      resolve file.asArrayBuffer()
+  fetch getURL rom
+  .then (res) ->
+    res.arrayBuffer()
+  .then (data) ->
+    zip = new JSZip data
+    file = zip.file rom.file_name
+    if file is null
+      throw new Error 'Cannot find rom.'
+    file.asArrayBuffer()
 
-hasROM = (rom, cb) -> #TODO: intelligent hasROM
+hasROM = (rom) -> #TODO: intelligent hasROM
   new Promise (resolve, reject) ->
     resolve true
 
