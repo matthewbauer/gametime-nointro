@@ -3,3 +3,5 @@ npm-debug.log
 *.js
 build
 coverage
+config.js
+jspm_packages
