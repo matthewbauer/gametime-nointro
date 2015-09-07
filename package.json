@@ -31,7 +31,9 @@
     "main": "nointro.coffee!",
     "directories": {},
     "dependencies": {
-      "coffee": "github:forresto/system-coffee@^0.1.2"
+      "coffee": "github:forresto/system-coffee@^0.1.2",
+      "isomorphic-fetch": "npm:isomorphic-fetch@^2.1.1",
+      "jszip": "npm:jszip@^2.5.0"
     },
     "devDependencies": {
       "traceur": "github:jmcriffey/bower-traceur@0.0.91",
