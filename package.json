@@ -2,7 +2,7 @@
   "name": "gametime-nointro",
   "description": "Used to fetch nointro roms.",
   "author": "Matthew Bauer <mjbauer95@gmail.com>",
-  "version": "0.7.1",
+  "version": "1.0.0",
   "repository": {
     "type": "git",
     "url": "https://github.com/matthewbauer/gametime-nointro.git"
