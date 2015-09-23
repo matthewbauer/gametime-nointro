@@ -42,7 +42,7 @@ getURL = (game, date) ->
   collection = "No-Intro-Collection_#{date}"
   console = consoles[game.systemShortName]
   'https://crossorigin.herokuapp.com/' + url.format
-    protocol: 'http'
+    protocol: 'https'
     hostname: 'ia800500.us.archive.org'
     pathname: "zipview.php"
     query:
