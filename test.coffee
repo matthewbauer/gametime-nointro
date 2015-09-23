@@ -29,7 +29,6 @@ for rom in roms
   do (rom) ->
     describe "#{rom.releaseTitleName}", ->
       url = nointro.getURL rom
-      console.log(url)
       it "url should resolve to 200", (done) ->
         request url, (err, resp, body) ->
           should.not.exist err

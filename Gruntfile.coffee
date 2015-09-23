@@ -8,7 +8,6 @@ module.exports = (grunt) ->
         options:
           require: [
             'coffee-script/register'
-            'coffee-coverage/register-istanbul'
           ]
         src: ['test.coffee']
     coffee:

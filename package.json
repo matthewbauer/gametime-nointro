@@ -25,6 +25,7 @@
     "jspm": "^0.16.2",
     "load-grunt-tasks": "^3.1.0",
     "mocha": "^2.2.4",
+    "request": "^2.63.0",
     "should": "^6.0.1"
   },
   "jspm": {
@@ -32,7 +33,7 @@
     "directories": {},
     "dependencies": {
       "coffee": "github:forresto/system-coffee@^0.1.2",
-      "hctef": "npm:hctef@^0.1.0",
+      "hctef": "npm:hctef@^0.2.0",
       "jszip": "npm:jszip@^2.5.0"
     },
     "devDependencies": {
