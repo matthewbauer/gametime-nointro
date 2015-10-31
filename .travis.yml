@@ -1,8 +1,5 @@
 language: node_js
 node_js:
-  - "iojs"
+  - "5.0"
 before_install: npm install -g grunt-cli
-install: npm install
-script: grunt build
-after_success:
-  npm run coveralls
+script: grunt build && npm test
